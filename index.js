@@ -10,6 +10,7 @@ mongoose
   .then((e) => console.log("MongoDb Connected"));
 
 const userRoutes = require("./routes/user");
+const blogRoute = require("./routes/blog");
 const { checkforcookie } = require("./middlewares/authentication");
 
 app.use(express.urlencoded({ extended: false }));
@@ -26,5 +27,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRoutes);
+app.use("/blog", blogRoute);
 
 app.listen(Port, () => console.log("Connected to Server"));
