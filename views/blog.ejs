@@ -16,7 +16,30 @@
             <%= blog.body %>
         </pre>
 <!-- here we will use pre tag bcoz it gives spacing accordingly -->
-    </div>
+<div class="container mt-4">
+    <% if (blog.createdBy) { %>
+      <img src="<%= blog.createdBy.profileImageUrl %>" width="50px"/>
+      <%= blog.createdBy.fullName %>
+    <% } else { %>
+      <p>Author not found</p>
+    <% } %>
+  </div>
+  <div class="container mt-4">
+    <h1>Comments</h1>
+    <% if (locals.user) { %>
+      <form action="/blog/comment/<%= blog._id %>" method="post">
+            
+        <div class="mb-3 mt-5">
+          
+          <input type="text" name="content" class="form-control" placeholder="Enter Comments" >
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+     
+    <% } %>
+
+  </div>
     <%- include('./partials/script') %>
 </body>
 </html>

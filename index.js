@@ -28,6 +28,7 @@ app.get("/", async (req, res) => {
   res.render("home", {
     user: req.user,
     blogs: allBlogs,
+    profileImageUrl: `/images/default.png`,
   });
 });
 
