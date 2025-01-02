@@ -1,11 +1,11 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
-const Port = process.env.PORT || 8000;
 const path = require("path");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const Blog = require("./models/blog");
+const app = express();
+const Port = process.env.PORT || 8000;
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -15,9 +15,9 @@ const userRoutes = require("./routes/user");
 const blogRoute = require("./routes/blog");
 const { checkforcookie } = require("./middlewares/authentication");
 
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(checkforcookie("token"));
+app.use(express.urlencoded({ extended: false })); //for  form input data
+app.use(cookieParser()); //for token generation
+app.use(checkforcookie("token")); //for checking
 app.use(express.static(path.resolve("./public")));
 
 app.set("view engine", "ejs");
